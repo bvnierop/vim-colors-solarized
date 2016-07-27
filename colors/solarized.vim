@@ -280,6 +280,24 @@ elseif (has("gui_running") && g:solarized_degrade == 1)
     let s:blue        = "#0087ff"
     let s:cyan        = "#00afaf"
     let s:green       = "#5f8700"
+elseif (!has("gui_running") && (has("win32") || has("win64")))
+    let s:vmode       = "cterm"
+    let s:base03      = "0"
+    let s:base02      = "8"
+    let s:base01      = "2"
+    let s:base00      = "6"
+    let s:base0       = "1"
+    let s:base1       = "3"
+    let s:base2       = "7"
+    let s:base3       = "15"
+    let s:yellow      = "14"
+    let s:orange      = "4"
+    let s:red         = "12"
+    let s:magenta     = "13"
+    let s:violet      = "5"
+    let s:blue        = "9"
+    let s:cyan        = "11"
+    let s:green       = "10"
 elseif g:solarized_termcolors != 256 && &t_Co >= 16
     let s:vmode       = "cterm"
     let s:base03      = "8"
@@ -319,22 +337,22 @@ elseif g:solarized_termcolors == 256
 else
     let s:vmode       = "cterm"
     let s:bright      = "* term=bold cterm=bold"
-"   let s:base03      = "0".s:bright
-"   let s:base02      = "0"
-"   let s:base01      = "2".s:bright
-"   let s:base00      = "3".s:bright
-"   let s:base0       = "4".s:bright
-"   let s:base1       = "6".s:bright
-"   let s:base2       = "7"
-"   let s:base3       = "7".s:bright
-"   let s:yellow      = "3"
-"   let s:orange      = "1".s:bright
-"   let s:red         = "1"
-"   let s:magenta     = "5"
-"   let s:violet      = "5".s:bright
-"   let s:blue        = "4"
-"   let s:cyan        = "6"
-"   let s:green       = "2"
+    "   let s:base03      = "0".s:bright
+    "   let s:base02      = "0"
+    "   let s:base01      = "2".s:bright
+    "   let s:base00      = "3".s:bright
+    "   let s:base0       = "4".s:bright
+    "   let s:base1       = "6".s:bright
+    "   let s:base2       = "7"
+    "   let s:base3       = "7".s:bright
+    "   let s:yellow      = "3"
+    "   let s:orange      = "1".s:bright
+    "   let s:red         = "1"
+    "   let s:magenta     = "5"
+    "   let s:violet      = "5".s:bright
+    "   let s:blue        = "4"
+    "   let s:cyan        = "6"
+    "   let s:green       = "2"
     let s:base03      = "DarkGray"      " 0*
     let s:base02      = "Black"         " 0
     let s:base01      = "LightGreen"    " 2*
@@ -356,15 +374,15 @@ endif
 "}}}
 " Formatting options and null values for passthrough effect "{{{
 " ---------------------------------------------------------------------
-    let s:none            = "NONE"
-    let s:none            = "NONE"
-    let s:t_none          = "NONE"
-    let s:n               = "NONE"
-    let s:c               = ",undercurl"
-    let s:r               = ",reverse"
-    let s:s               = ",standout"
-    let s:ou              = ""
-    let s:ob              = ""
+let s:none            = "NONE"
+let s:none            = "NONE"
+let s:t_none          = "NONE"
+let s:n               = "NONE"
+let s:c               = ",undercurl"
+let s:r               = ",reverse"
+let s:s               = ",standout"
+let s:ou              = ""
+let s:ob              = ""
 "}}}
 " Background value based on termtrans setting "{{{
 " ---------------------------------------------------------------------
@@ -632,26 +650,26 @@ exe "hi! WildMenu"       .s:fmt_none   .s:fg_base2  .s:bg_base02 .s:fmt_revbb
 exe "hi! Folded"         .s:fmt_undb   .s:fg_base0  .s:bg_base02  .s:sp_base03
 exe "hi! FoldColumn"     .s:fmt_none   .s:fg_base0  .s:bg_base02
 if      (g:solarized_diffmode=="high")
-exe "hi! DiffAdd"        .s:fmt_revr   .s:fg_green  .s:bg_none
-exe "hi! DiffChange"     .s:fmt_revr   .s:fg_yellow .s:bg_none
-exe "hi! DiffDelete"     .s:fmt_revr   .s:fg_red    .s:bg_none
-exe "hi! DiffText"       .s:fmt_revr   .s:fg_blue   .s:bg_none
+    exe "hi! DiffAdd"        .s:fmt_revr   .s:fg_green  .s:bg_none
+    exe "hi! DiffChange"     .s:fmt_revr   .s:fg_yellow .s:bg_none
+    exe "hi! DiffDelete"     .s:fmt_revr   .s:fg_red    .s:bg_none
+    exe "hi! DiffText"       .s:fmt_revr   .s:fg_blue   .s:bg_none
 elseif  (g:solarized_diffmode=="low")
-exe "hi! DiffAdd"        .s:fmt_undr   .s:fg_green  .s:bg_none   .s:sp_green
-exe "hi! DiffChange"     .s:fmt_undr   .s:fg_yellow .s:bg_none   .s:sp_yellow
-exe "hi! DiffDelete"     .s:fmt_bold   .s:fg_red    .s:bg_none
-exe "hi! DiffText"       .s:fmt_undr   .s:fg_blue   .s:bg_none   .s:sp_blue
+    exe "hi! DiffAdd"        .s:fmt_undr   .s:fg_green  .s:bg_none   .s:sp_green
+    exe "hi! DiffChange"     .s:fmt_undr   .s:fg_yellow .s:bg_none   .s:sp_yellow
+    exe "hi! DiffDelete"     .s:fmt_bold   .s:fg_red    .s:bg_none
+    exe "hi! DiffText"       .s:fmt_undr   .s:fg_blue   .s:bg_none   .s:sp_blue
 else " normal
     if has("gui_running")
-exe "hi! DiffAdd"        .s:fmt_bold   .s:fg_green  .s:bg_base02 .s:sp_green
-exe "hi! DiffChange"     .s:fmt_bold   .s:fg_yellow .s:bg_base02 .s:sp_yellow
-exe "hi! DiffDelete"     .s:fmt_bold   .s:fg_red    .s:bg_base02
-exe "hi! DiffText"       .s:fmt_bold   .s:fg_blue   .s:bg_base02 .s:sp_blue
+        exe "hi! DiffAdd"        .s:fmt_bold   .s:fg_green  .s:bg_base02 .s:sp_green
+        exe "hi! DiffChange"     .s:fmt_bold   .s:fg_yellow .s:bg_base02 .s:sp_yellow
+        exe "hi! DiffDelete"     .s:fmt_bold   .s:fg_red    .s:bg_base02
+        exe "hi! DiffText"       .s:fmt_bold   .s:fg_blue   .s:bg_base02 .s:sp_blue
     else
-exe "hi! DiffAdd"        .s:fmt_none   .s:fg_green  .s:bg_base02 .s:sp_green
-exe "hi! DiffChange"     .s:fmt_none   .s:fg_yellow .s:bg_base02 .s:sp_yellow
-exe "hi! DiffDelete"     .s:fmt_none   .s:fg_red    .s:bg_base02
-exe "hi! DiffText"       .s:fmt_none   .s:fg_blue   .s:bg_base02 .s:sp_blue
+        exe "hi! DiffAdd"        .s:fmt_none   .s:fg_green  .s:bg_base02 .s:sp_green
+        exe "hi! DiffChange"     .s:fmt_none   .s:fg_yellow .s:bg_base02 .s:sp_yellow
+        exe "hi! DiffDelete"     .s:fmt_none   .s:fg_red    .s:bg_base02
+        exe "hi! DiffText"       .s:fmt_none   .s:fg_blue   .s:bg_base02 .s:sp_blue
     endif
 endif
 exe "hi! SignColumn"     .s:fmt_none   .s:fg_base0
